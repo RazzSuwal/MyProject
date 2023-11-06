@@ -1,0 +1,122 @@
+﻿@model MyProject.Models.ViewModels.CartVM
+@using Microsoft.Extensions.Options
+@inject IOptions<MyProject.CommonHelper.StripeSettings> Stripe
+
+<div class="container wrapper">
+    <div class="row cart-head">
+        <div class="container">
+            <div class="row">
+                <p></p>
+            </div>
+            <div class="row">
+                <div style="display: table; margin: auto;">
+                    <span class="step step_complete"> <a href="#" class="check-bc">Cart</a> <span class="step_line step_complete"> </span> <span class="step_line backline"> </span> </span>
+                    <span class="step step_complete"> <a href="#" class="check-bc">Checkout</a> <span class="step_line "> </span> <span class="step_line step_complete"> </span> </span>
+                    <span class="step_thankyou check-bc step_complete">Thank you</span>
+                </div>
+            </div>
+            <div class="row">
+                <p></p>
+            </div>
+        </div>
+    </div>
+    <div class="row cart-body">
+        <form class="form-horizontal" method="post">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
+                <!--REVIEW ORDER-->
+                @foreach(var details in Model.ListOfCart){
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Review Order <div class="pull-right"><small><a class="afix-1" href="#">Edit Cart</a></small></div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="col-sm-3 col-xs-3">
+                            </div>
+                            <div class="col-sm-6 col-xs-6">
+                                <div class="col-xs-12">@details.Course.CourseName</div>
+                                    @*<div class="col-xs-12"><small>Quantity:<span>@details.Count</span></small></div>*@
+                            </div>
+                            <div class="col-sm-3 col-xs-3 text-right">
+                                <h6><span>Rs </span>@details.Course.Price</h6>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group"><hr /></div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <strong>Subtotal</strong>
+                                    <div class="pull-right"><span>RS </span><span>@(details.Course.Price)</span></div>
+                            </div>
+                        </div>
+                        <div class="form-group"><hr /></div>
+                        
+                    </div>
+                </div>
+                }
+                <!--REVIEW ORDER END-->
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-pull-6 col-sm-pull-6">
+                <!--SHIPPING METHOD-->
+                <div class="panel panel-info">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <strong>Order Total</strong>
+                            <div class="pull-right"><span>Rs</span> @Model.OrderHeader.OrderTotal</div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <h4>Shipping Address</h4>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-xs-12">
+                                <label asp-for="@Model.OrderHeader.Name"></label>
+                                <input asp-for="@Model.OrderHeader.Name" class="form-control" />
+                                <span asp-validation-for="@Model.OrderHeader.Name" class="text-danger"></span>
+                            </div>
+                           
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.OrderHeader.Country"></label>
+                            <input asp-for="@Model.OrderHeader.Country" class="form-control" />
+                            <span asp-validation-for="@Model.OrderHeader.Country" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.OrderHeader.Address"></label>
+                            <input asp-for="@Model.OrderHeader.Address" class="form-control" />
+                            <span asp-validation-for="@Model.OrderHeader.Address" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.OrderHeader.LinkAccount"></label>
+                            <input asp-for="@Model.OrderHeader.LinkAccount" class="form-control" />
+                            <span asp-validation-for="@Model.OrderHeader.LinkAccount" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.OrderHeader.Phone"></label>
+                            <input asp-for="@Model.OrderHeader.Phone" class="form-control" />
+                            <span asp-validation-for="@Model.OrderHeader.Phone" class="text-danger"></span>
+                        </div>
+                        
+                        <input type="hidden" asp-for="@Model.OrderHeader.ApplicationUser" />
+                    </div>
+                </div>  
+            </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <button class="btn btn-primary btn-submit-fix">Place Order</button>
+                            </div>
+                        </div>
+        </form>
+    </div>
+    <div class="row cart-footer">
+    </div>
+</div>
+
+@section scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
