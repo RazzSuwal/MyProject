@@ -34,5 +34,8 @@ namespace MyProject.Models
         [Required]
         public string Name { get; set; }
         public string ?LinkAccount { get; set; }
+        public int CourseId { get; set; }
+        [ValidateNever]
+        public Course Course { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -22,6 +23,8 @@ namespace MyProject.Models
         public double Price { get; set; }
         [ValidateNever]
         public string ImageUrl { get; set; }
+        [ValidateNever]
+        public string DriveLink { get; set; }
         public string? VideoUrl { get; set; }
         public string? Rating { get; set; }
         [Required]

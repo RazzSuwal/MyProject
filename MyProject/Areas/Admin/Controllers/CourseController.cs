@@ -19,8 +19,6 @@ namespace MyProject.Areas.Admin.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _hostingEnvironment;
-        public IEnumerable<SelectListItem> Categories { get; private set; }
-        public IEnumerable<SelectListItem> Teachers { get; private set; }
 
         public CourseController(IUnitOfWork unitOfWork, IWebHostEnvironment hostingEnvironment)
         {
@@ -51,6 +49,20 @@ namespace MyProject.Areas.Admin.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult SimilarCourses(int? courseId)
+        {
+            if (courseId == null)
+            {
+                return NotFound();
+            }
+
+            // Load similar courses
+            var similarCourses = _unitOfWork.Course.GetSimilarCourses((int)courseId);
+
+            return View(similarCourses);
         }
 
         [HttpGet]

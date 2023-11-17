@@ -1,5 +1,6 @@
 ﻿@model MyProject.Models.ViewModels.CategoryVM
 
+<div class="container">
 <form method="post">
     <input type="hidden" asp-for="Category.Id" />
     <div class="border p-3 mt-4">
@@ -9,26 +10,27 @@
         </div>
         <div class="row mb-3">
             <label asp-for="Category.Name"></label>
-            <input asp-for="Category.Name" class="form-control" />
+                <input asp-for="Category.Name" class="form-control fs-4" />
             <span asp-validation-for="Category.Name" class="text-danger"></span>
         </div>
         <div class="row mb-3">
             <label asp-for="Category.DisplayOrder"></label>
-            <input asp-for="Category.DisplayOrder" class="form-control" />
+                <input asp-for="Category.DisplayOrder" class="form-control fs-4" />
             <span asp-validation-for="Category.DisplayOrder" class="text-danger"></span>
         </div>
         @if (Model.Category == null || Model.Category.Id == 0)
         {
-            <button class="btn btn primary" type="submit"> Create Category </button>
+                <button class="hero__btn" type="submit"> Create Category </button>
         }
         else
         {
-            <button class="btn btn primary" type="submit"> Update Category </button>
+            <button class="hero__btn" type="submit"> Update Category </button>
         }
     </div>
     <a asp-action="Index" asp-controller="category">Back To List</a>
 
 </form>
+</div>
 
 @section scripts{
     @{

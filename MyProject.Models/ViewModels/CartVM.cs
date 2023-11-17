@@ -10,6 +10,7 @@ namespace MyProject.Models.ViewModels
     {
         public IEnumerable<Cart> ListOfCart { get; set; }
         public OrderHeader OrderHeader { get; set; }
+        public Course Course { get; set; }
 
     }
 }

@@ -1,0 +1,18 @@
+﻿@model IEnumerable<MyProject.Models.Course>
+
+<h2>Similar Courses</h2>
+
+@if (Model != null && Model.Any())
+{
+    <ul>
+        @foreach (var similarCourse in Model)
+        {
+            <li>@similarCourse.CourseName</li>
+            <!-- Display other information about similarCourse as needed -->
+        }
+    </ul>
+}
+else
+{
+    <p>No similar courses found.</p>
+}

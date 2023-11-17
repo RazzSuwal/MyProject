@@ -10,6 +10,7 @@
                         <!-- <div class="rect" id="rect"></div> -->
                         <div class="picture__container">
                             <img src="@Model.Course.ImageUrl"" />
+                            
                     </div>
                 </div>
                 <div class=" zoom" id="zoom">
@@ -18,64 +19,67 @@
 
                     
                 </div>
-
+            <form method="post">
+                <input type="hidden" asp-for="CourseId" />
                 <div class="product-detail__right">
                     <div class="product-detail__content">
-                        <h3>CourseName: @Model.Course.CourseName</h3>
-                        <h4>Category : @Model.Course.Category.Name</h4>
+                        <h3><label asp-for="Course.CourseName">CourseName: @Model.Course.CourseName</label></h3>
+                        <h4><label asp-for="Course.Category.Id">Category : @Model.Course.Category.Name</label></h4>
                         <div class="price">
-                            <span class="new__price">Price: Rs @Model.Course.Price</span>
+                            <span class="new__price"> <label asp-for="Course.Price">Price: Rs @Model.Course.Price</label></span>
                         </div>
                         <div class="product__review">
                             <div class="rating">
                                 <svg>
-                                    <use xlink:href="./Images/sprite.svg#icon-star-full"></use>
+                                    <use xlink:href='@Url.Content("~/Images/sprite.svg#icon-star-full")'></use>
                                 </svg>
                                 <svg>
-                                    <use xlink:href="./Images/sprite.svg#icon-star-full"></use>
+                                    <use xlink:href='@Url.Content("~/Images/sprite.svg#icon-star-full")'></use>
                                 </svg>
                                 <svg>
-                                    <use xlink:href="./Images/sprite.svg#icon-star-full"></use>
+                                    <use xlink:href='@Url.Content("~/Images/sprite.svg#icon-star-full")'></use>
                                 </svg>
                                 <svg>
-                                    <use xlink:href="./Images/sprite.svg#icon-star-full"></use>
+                                    <use xlink:href='@Url.Content("~/Images/sprite.svg#icon-star-full")'></use>
                                 </svg>
                                 <svg>
-                                    <use xlink:href="./Images/sprite.svg#icon-star-empty"></use>
+                                    <use xlink:href='@Url.Content("~/Images/sprite.svg#icon-star-full")'></use>
                                 </svg>
                             </div>
                             <a href="#" class="rating__quatity">3 reviews</a>
                         </div>
                         <p>
-                            @Model.Course.Description
+                            <label asp-for="Course.Description">@Model.Course.Description</label>
                         </p>
                     <p>Created By: @Model.Course.Name</p>
                     </div>
                     <div class="product-details__btn">
-                        <a class="add" href="#">
+                        @* <a class="add" href="#">
                             <span>
                                 <svg>
                                     <use xlink:href="./images/sprite.svg#icon-cart-plus"></use>
                                 </svg>
                             </span>
-                            ADD TO CART</a>
+                            ADD TO CART</a> *@
+                    <button type="submit" class="add w-100 me-2">ADD TO CART</button>
                         <a class="buy" href="#">
                             <span>
                                 <svg>
-                                    <use xlink:href="./images/sprite.svg#icon-credit-card"></use>
+                                    <use xlink:href='@Url.Content("~/Images/sprite.svg#icon-credit-card")'></use>
                                 </svg>
                             </span>
-                            BUY NOW
+                            BUY NOW 
                         </a>
                     </div>
                 </div>
             </div>
+        </form>
 
             <div class="product-detail__bottom">
                 <div class="title__container tabs">
 
                     <div class="section__titles category__titles ">
-                        <div class="section__title detail-btn active" data-id="description">
+                        <div class="section__title detail-btn active" data-id="desc">
                             <span class="dot"></span>
                             <h1 class="primary__title">Description</h1>
                         </div>
@@ -97,7 +101,7 @@
                 </div>
 
                 <div class="detail__content">
-                    <div class="content active" id="description">
+                    <div class="content active" id="desc">
                         <p>@Model.Course.Description</p>
                     </div>
                     <div class="content" id="reviews">
@@ -137,7 +141,9 @@
                     </div>
                 </div>
             </div>
+        
     </section>
+                            @Html.ActionLink("View Similar Courses", "SimilarCourses", new { courseId = ViewBag.TargetCourse.Id })
 </div>    
 
 

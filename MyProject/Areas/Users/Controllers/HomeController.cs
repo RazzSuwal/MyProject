@@ -29,6 +29,7 @@ namespace MyProject.Controllers
            {
                 t => t.Category
            });
+            ViewBag.ShowFooter = true;
             return View(courses);
         }
         [HttpGet]
@@ -39,7 +40,7 @@ namespace MyProject.Controllers
                 Course = _unitOfWork.Course.GetT(x => x.Id == CourseId, includeProperties: "Category"),
                 CourseId = (int)CourseId
             };
-
+            ViewBag.ShowFooter = true;
             return View(cart);
         }
 

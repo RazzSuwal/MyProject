@@ -4,44 +4,44 @@
     ViewData["Title"] = "Register";
 }
 
-<div class="d-flex align-items-center justify-content-center mt-5">
+<div class="d-flex align-items-center justify-content-center myForm ">
     <div class="w-75 p-4 border border-end-0 border-top-0 border-5 border-secondary-subtle border-opacity-10 rounded-start-5">
         <form id="registerForm" class="row" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Create a New Account.</h2>
+            <h2 class="text-light">Create a New Account.</h2>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="form-floating mb-3 col-6">
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <input asp-for="Input.Email" class="form-control fs-4" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                 <label asp-for="Input.Email">Email</label>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3 col-6">
-                <input asp-for="Input.Name" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <input asp-for="Input.Name" class="form-control fs-4" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                 <label asp-for="Input.Name">Name</label>
                 <span asp-validation-for="Input.Name" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3 col-6">
-                <input asp-for="Input.Country" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <input asp-for="Input.Country" class="form-control fs-4" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                 <label asp-for="Input.Country">Country</label>
                 <span asp-validation-for="Input.Country" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3 col-6">
-                <input asp-for="Input.Address" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <input asp-for="Input.Address" class="form-control fs-4" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                 <label asp-for="Input.Address">Address</label>
                 <span asp-validation-for="Input.Address" class="text-danger"></span>
             </div>
 
             <div class="form-floating mb-3 col-6">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <input asp-for="Input.Password" class="form-control fs-4" autocomplete="new-password" aria-required="true" placeholder="password" />
                 <label asp-for="Input.Password">Password</label>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3 col-6">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <input asp-for="Input.ConfirmPassword" class="form-control fs-4" autocomplete="new-password" aria-required="true" placeholder="password" />
                 <label asp-for="Input.ConfirmPassword">Confirm Password</label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+            <button id="registerSubmit" type="submit" class="hero__btn">Create a New Account</button>
             <div>
                 <p>
                     <a id="login" asp-area="Identity" asp-page="/Account/Login">Already have an account!</a>

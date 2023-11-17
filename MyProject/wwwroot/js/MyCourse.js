@@ -13,6 +13,12 @@ $(document).ready(function () {
             { "data": "category.name" },
             { "data": "name" },
             {
+                "data": "driveLink",
+                "render": function (data) {
+                    return `<a href="${data}" target="_blank"> Link</a>`
+                }
+            },
+            {
                 "data": "id",
                 "render": function (data) {
                     return `

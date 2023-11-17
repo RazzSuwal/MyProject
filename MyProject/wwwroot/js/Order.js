@@ -22,18 +22,23 @@ function OrderTable(status) {
         "columns": [
             { "data": "name" },
             { "data": "phone" },
-            { "data": "linkAccount" },
+            {
+                "data": "course.driveLink",
+                "render": function (data) {
+                    return `<a href="${data}" target="_blank"> Drive Link </a>`
+                }
+            },
             { "data": "orderStatus" },
             { "data": "orderTotal" },
             /*{ "data": "userId" },*/
-            {
-                "data": "id",
-                "render": function (data) {
-                    return `
-                            <a href="/Admin/order/orderDetails?id=${data}"> Edit</a>
-                        `
-                }
-            }
+            //{
+            //    "data": "id",
+            //    "render": function (data) {
+            //        return `
+            //                <a href="/Admin/order/orderDetails?id=${data}"> Edit</a>
+            //            `
+            //    }
+            //}
         ]
     });
 }

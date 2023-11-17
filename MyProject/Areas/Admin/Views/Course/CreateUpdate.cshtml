@@ -1,5 +1,6 @@
 ﻿@model MyProject.Models.ViewModels.CourseVM
 
+<div class="container">
 <form method="post" enctype="multipart/form-data" class="m-4">
     <input type="hidden" asp-for="Course.Id" />
     @*<input type="hidden" asp-for="Course.ApplicationUserId" />*@
@@ -11,53 +12,59 @@
         </div>
         <div class="row mb-3">
             <label asp-for="Course.Name"></label>
-            <input asp-for="Course.Name" class="form-control" />
+                <input asp-for="Course.Name" class="form-control fs-4" />
             <span asp-validation-for="Course.Name" class="text-danger"></span>
         </div>
         <div class="row mb-3">
             <label asp-for="Course.CourseName"></label>
-            <input asp-for="Course.CourseName" class="form-control" />
+                <input asp-for="Course.CourseName" class="form-control fs-4" />
             <span asp-validation-for="Course.CourseName" class="text-danger"></span>
         </div>
         <div class="row mb-3">
             <label asp-for="Course.Description"></label>
-            <textarea asp-for="Course.Description" class="form-control"></textarea>
+                <textarea asp-for="Course.Description" class="form-control fs-4"></textarea>
             <span asp-validation-for="Course.Description" class="text-danger"></span>
         </div>
         <div class="row mb-3">
             <label asp-for="Course.Price"></label>
-            <input asp-for="Course.Price" class="form-control" />
+                <input asp-for="Course.Price" class="form-control fs-4" />
             <span asp-validation-for="Course.Price" class="text-danger"></span>
         </div>
         <div class="row mb-3">
             <label asp-for="Course.ImageUrl"></label>
-            <input type="file" id="ImageFile" name="file" class="form-control" />
+                <input type="file" id="ImageFile" name="file" class="form-control fs-4" />
         </div>
         <div class="row mb-3">
             <label asp-for="Course.VideoUrl"></label>
-            <input type="file" id="VideoFile" name="vFile" accept="video/mp4" class="form-control" />
+                <input type="file" id="VideoFile" name="vFile" accept="video/mp4" class="form-control fs-4" />
         </div>
         <div class="row mb-3">
             <label asp-for="Course.CategoryId"></label>
-            <select asp-for="Course.CategoryId" asp-items="@Model.Categories" class="form-control">
+                <select asp-for="Course.CategoryId" asp-items="@Model.Categories" class="form-control fs-4">
                 <option selected disabled>--Select Category</option>
             </select>
             <span asp-validation-for="Course.CategoryId" class="text-danger"></span>
         </div>
+            <div class="row mb-3">
+                <label asp-for="Course.DriveLink"></label>
+                <textarea asp-for="Course.DriveLink" class="form-control fs-4"></textarea>
+                <span asp-validation-for="Course.DriveLink" class="text-danger"></span>
+                <span class="text-danger">Note: Most provide drive link with full course which will download by student afer buying course </span>
+            </div>
 
         @if (Model.Course == null || Model.Course.Id == 0)
         {
-            <button class="btn btn primary" onclick="return ValidateEmpty()" type="submit"> Create Product </button>
+            <button class="hero__btn" onclick="return ValidateEmpty()" type="submit"> Create Product </button>
         }
         else
         {
-            <button class="btn btn primary" type="submit"> Update Product </button>
+                <button class="hero__btn" type="submit"> Update Course </button>
         }
     </div>
-    <a asp-action="Index" asp-controller="Course">Back To List</a>
+        <a asp-action="Index" asp-controller="Course" class="mb-3">Back To List</a>
 
 </form>
-
+</div>
 @section scripts
     {
     @{

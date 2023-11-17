@@ -78,6 +78,7 @@ namespace MyProject.Areas.Customer.Controllers
             foreach (var item in vm.ListOfCart)
             {
                 vm.OrderHeader.OrderTotal += (item.Course.Price);
+                vm.OrderHeader.CourseId = item.Course.Id;
             }
             _unitOfWork.OrderHeader.Add(vm.OrderHeader);
             _unitOfWork.Save();

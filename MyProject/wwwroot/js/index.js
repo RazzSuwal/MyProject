@@ -43,6 +43,33 @@ PopUp
 //  });
 //}
 
+//For Course Datails
+const btns = document.querySelectorAll(".detail-btn");
+const detail = document.querySelector(".product-detail__bottom");
+const contents = document.querySelectorAll(".content");
+
+if (detail) {
+    detail.addEventListener("click", e => {
+        const target = e.target.closest(".detail-btn");
+        if (!target) return;
+
+        const id = target.dataset.id;
+        if (id) {
+            Array.from(btns).forEach(btn => {
+                // remove active from all btn
+                btn.classList.remove("active");
+                e.target.closest(".detail-btn").classList.add("active");
+            });
+            // hide other active
+            Array.from(contents).forEach(content => {
+                content.classList.remove("active");
+            });
+            const element = document.getElementById(id);
+            element.classList.add("active");
+        }
+    });
+}
+
 /*
 =============
 Fixed Navigation
@@ -104,47 +131,21 @@ document.querySelector('#login').onclick=()=>{
 
 }
 
-// let shoppingCart=document.querySelector('.shopping-cart');
+ let shoppingCart=document.querySelector('.shopping-cart');
 
-// document.querySelector('#cart-btn').onclick=()=>{
-//     shoppingCart.classList.toggle('active');
-//     searchForm.classList.remove('active');
-//     login.classList.remove('active');
+ document.querySelector('#cart-btn').onclick=()=>{
+     shoppingCart.classList.toggle('active');
+     searchForm.classList.remove('active');
+     login.classList.remove('active');
 
-// }
-// let searchForm=document.querySelector('.search-form');
+ }
+ let searchForm=document.querySelector('.search-form');
 
-// document.querySelector('#search-btn').onclick=()=>{
-//     searchForm.classList.toggle('active');
-//     shoppingCart.classList.remove('active');
-//     login.classList.remove('active');
+ document.querySelector('#search-btn').onclick=()=>{
+     searchForm.classList.toggle('active');
+     shoppingCart.classList.remove('active');
+     login.classList.remove('active');
  
-// }
+ }
 
 
-//For Course Datails
-const btns = document.querySelectorAll(".detail-btn");
-const detail = document.querySelector(".product-detail__bottom");
-const contents = document.querySelectorAll(".content");
-
-if (detail) {
-  detail.addEventListener("click", e => {
-    const target = e.target.closest(".detail-btn");
-    if (!target) return;
-
-    const id = target.dataset.id;
-    if (id) {
-      Array.from(btns).forEach(btn => {
-        // remove active from all btn
-        btn.classList.remove("active");
-        e.target.closest(".detail-btn").classList.add("active");
-      });
-      // hide other active
-      Array.from(contents).forEach(content => {
-        content.classList.remove("active");
-      });
-      const element = document.getElementById(id);
-      element.classList.add("active");
-    }
-  });
-}

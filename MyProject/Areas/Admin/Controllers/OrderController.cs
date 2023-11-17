@@ -4,6 +4,7 @@ using MyProject.CommonHelper;
 using MyProject.DataAccessLayer.Infrastructure.IRepository;
 using MyProject.Models;
 using MyProject.MyCommonHelper;
+using System.Linq.Expressions;
 using System.Security.Claims;
 
 namespace MyProject.Areas.Admin.Controllers
@@ -24,13 +25,18 @@ namespace MyProject.Areas.Admin.Controllers
             IEnumerable<OrderHeader> orderHeader;
             if (User.IsInRole("Admin") || User.IsInRole("Employee"))
             {
-                orderHeader = _unitOfWork.OrderHeader.GetAll(includeProperties: "ApplicationUser");
+                orderHeader = _unitOfWork.OrderHeader.GetAlls(includeProperties: new Expression<Func<OrderHeader, object>>[]
+                    {
+                        t => t.ApplicationUser,
+                        u => u.Course
+                    });
+         
             }
             else
             {
                 var claimsIdentity = (ClaimsIdentity)User.Identity;
                 var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-                orderHeader = _unitOfWork.OrderHeader.GetAll(x => x.ApplicationUserId == claims.Value);
+                orderHeader = _unitOfWork.OrderHeader.GetAll(x => x.ApplicationUserId == claims.Value, includeProperties: "Course");
 
             }
             switch (status)

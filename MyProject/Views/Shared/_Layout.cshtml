@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - VirtualClassroom</title>
+    <title>@ViewData["Title"] - HamroPathsahala</title>
      <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet" />
     
@@ -23,13 +23,13 @@
 
 </head>
 <body>
-    <header>
+    <header id="header">
         <div class="navigation">
             <div class="container">
                 <nav class="nav">
                     <div class="nav__hamburger">
                         <svg>
-                            <use xlink:href="./Images/sprite.svg#icon-menu"></use>
+                            <use xlink:href='@Url.Content("~/Images/sprite.svg#icon-menu")'></use>
                         </svg>
                     </div>
 
@@ -38,13 +38,18 @@
                             Hamro Pathsala
                         </a>
                     </div>
+                    <div class="nav__logo2">
+                        <a aria-current="page" asp-area="Users" asp-controller="Home" asp-action="Index">
+                            HP
+                        </a>
+                    </div>
 
                     <div class="nav__menu">
                         <div class="menu__top">
                             <span class="nav__category">Hamro Pathsala</span>
                             <a href="#" class="close__toggle">
                                 <svg>
-                                    <use xlink:href="./Images/sprite.svg#icon-cross"></use>
+                                    <use xlink:href='@Url.Content("~/Images/sprite.svg#icon-cross")'></use>
                                 </svg>
                             </a>
                         </div>
@@ -62,7 +67,7 @@
                                 <a class="nav__link" asp-area="Admin" asp-controller="Order" asp-action="Index">Order</a>
                             </li>
                             <li class="nav__item">
-                                <a class="nav__link" asp-area="Admin" asp-action="index" asp-controller="Course">Sell</a>
+                                <a class="nav__link" asp-area="Users" asp-action="Privacy" asp-controller="Home">Sell</a>
                             </li>
                             
                         </ul>
@@ -73,7 +78,7 @@
                         
                         <a href="#" class="icon__item" id="search-btn">
                             <svg class="icon__search">
-                                <use xlink:href="./Images/sprite.svg#icon-search"></use>
+                                <use xlink:href='@Url.Content("~/Images/sprite.svg#icon-search")'></use>
                             </svg>
                         </a>
 
@@ -108,7 +113,10 @@
             <partial name="_Notification" />
             @RenderBody()
         </main>
-            <partial name="_Footer" />
+    @if (ViewBag.ShowFooter == true)
+    {
+        @Html.Partial("_Footer")
+    }
     @* </div> *@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

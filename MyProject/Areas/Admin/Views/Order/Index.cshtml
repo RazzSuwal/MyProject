@@ -4,16 +4,14 @@
 }
 
 <div class="container">
-    <div class="col-6">
+    <div class="col-6 mt-4">
         <h1>List of Orders</h1>
     </div>
-    <div class="col-6">
-        <a asp-controller="order" asp-action="Index" asp-route-status="pending">Pending</a>
+    <div class="col-6 mb-4">
+        <a asp-controller="order" asp-action="Index" asp-route-status="pending" class="hero__btn">Pending</a>
+        <a asp-controller="order" asp-action="Index" asp-route-status="approved" class="hero__btn">Approved</a>
     </div>
-    <div class="col-6">
-        <a asp-controller="order" asp-action="Index" asp-route-status="approved">Approved</a>
-    </div>
-</div>
+
 <table id="myTable" class="table table-bordered table-striped" style="width:100%">
     <thead>
         <tr>
@@ -24,7 +22,7 @@
                Phone Number
             </th>
             <th>
-               Viber/Whatapps Account
+               Download Course
             </th>
             <th>
                 Order Status
@@ -32,13 +30,11 @@
             <th>
                 Order Total
             </th>
-            <th>
-                Action
-            </th>
         </tr>
     </thead>
 
 </table>
+</div>
 
 @section scripts{
     <script src="~/js/Order.js"> </script>

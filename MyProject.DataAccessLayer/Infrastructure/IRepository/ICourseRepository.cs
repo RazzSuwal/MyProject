@@ -11,6 +11,7 @@ namespace MyProject.DataAccessLayer.Infrastructure.IRepository
     public interface ICourseRepository : IRepository<Course>
     {
         void Update(Course course);
+        IEnumerable<Course> GetSimilarCourses(int courseId);
     }
 }
 

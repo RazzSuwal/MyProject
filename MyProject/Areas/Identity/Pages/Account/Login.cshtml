@@ -4,33 +4,33 @@
 @{
     ViewData["Title"] = "Log in";
 }
-<div class="d-flex justify-content-center flex-wrap-reverse mt-5 login-form">
-    <div class="d-flex justify-content-center p-4 border border-end-0 border-top-0 border-5 border-secondary-subtle border-opacity-10 rounded-start-5">
-        <section>
-            <form id="account" method="post">
-                <h2>Login to your account</h2>
+<div class="d-flex justify-content-center align-items-start myForm">
+   
+        <section class="mt-5">
+            <form id="account" class="mt-2" method="post">
+            <h2 class="text-start text-light">Login to your account</h2>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                 <div class="form-floating mb-3">
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                    <input asp-for="Input.Email" class="form-control fs-4" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                     <label asp-for="Input.Email" class="form-label">Email</label>
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
                 <div class="form-floating mb-3">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+                    <input asp-for="Input.Password" class="form-control fs-4" autocomplete="current-password" aria-required="true" placeholder="password" />
                     <label asp-for="Input.Password" class="form-label">Password</label>
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
-                <div class="checkbox mb-3">
+            <div class="checkbox mb-3 text-start text-light">
                     <label asp-for="Input.RememberMe" class="form-label">
                         <input class="form-check-input" asp-for="Input.RememberMe" />
                         @Html.DisplayNameFor(m => m.Input.RememberMe)
                     </label>
                 </div>
-                <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                <div class="text-start">
+                    <button id="login-submit" type="submit" class="hero__btn w-100">Log in</button>
                 </div>
-                <div>
+            <div class="text-start">
                     <p>
                         <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
                     </p>
@@ -43,22 +43,7 @@
                 </div>
             </form>
         </section>
-    </div>
-    <div class="text-center d-flex align-items-center p-4 bg-secondary-subtle border-bottom border-5 border-secondary-subtle border-opacity-10 ">
-
-        @*<img src="~/Images/Knowledge.jpg" alt="Image" height="420" width="350">*@
-        <section>
-            <h3>Hello, Friend!.</h3>
-            <hr />
-            <p>Enter you personal details and start<br />
-                journey with us
-            </p>
-            <br />
-            <a class="w-100 btn btn-lg btn-secondary mb-2" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-            <br />
-            
-        </section>
-    </div>
+    
 </div>
 
 @section Scripts {

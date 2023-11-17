@@ -117,6 +117,9 @@ Navigation
     padding: 1.6rem;
     font-weight: 700;
 }
+.nav__logo2 a{
+    display: none;
+}
 
 .nav__hamburger {
     display: none;
@@ -337,14 +340,24 @@ Navigation Media Query
     }
 }
 
+@media only screen and (max-width: 546px){
+    .nav__logo2 a{
+        display: block;
+        font-size: 2.5rem;
+        color: var(--black);
+        padding: 1rem;
+        font-weight: 700;
+    }
+    .nav__logo{
+        display: none;
+    }
+}
 /*
 ======================
 Hero Area
 ======================
 */
-
-.hero,
-.hero .glide__slides {
+.hero, .hero .glide__slides {
     background-color: var(--primaryColor);
     position: relative;
     width: 100%;
@@ -1052,146 +1065,6 @@ Category Center
             object-fit: contain;
         }
 }
-
-/*
-======================
-Pop Up
-======================
-*/
-
-/* .popup {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 9999;
-  transition: 0.3s;
-  transform: scale(1);
-}
-
-.popup__content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 90%;
-  max-width: 110rem;
-  margin: 0 auto;
-  height: 55rem;
-  transform: translate(-50%, -50%);
-  padding: 1.6rem;
-  display: table;
-  overflow: hidden;
-  background-color: var(--white);
-}
-
-.popup__close {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  padding: 1.5rem;
-  background-color: var(--primaryColor);
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.popup__close svg {
-  width: 1.7rem;
-  height: 1.7rem;
-}
-
-.popup__left {
-  display: table-cell;
-  width: 50%;
-  height: 100%;
-  vertical-align: middle;
-}
-
-.popup__right {
-  display: table-cell;
-  width: 50%;
-  vertical-align: middle;
-  padding: 3rem 5rem;
-}
-
-.popup-img__container {
-  width: 100%;
-  overflow: hidden;
-}
-
-.popup-img__container img.popup__img {
-  display: block;
-  width: 60rem;
-  height: 45rem;
-  max-width: 100%;
-  border-radius: 1rem;
-  object-fit: cover;
-} */
-
-/* .right__content {
-    text-align: center;
-    width: 85%;
-    margin: 0 auto;
-}
-
-    .right__content h1 {
-        font-size: 4rem;
-        color: #000;
-        margin-bottom: 1.6rem;
-    }
-
-        .right__content h1 span {
-            color: var(--green);
-        }
-
-    .right__content p {
-        font-size: 1.8rem;
-        color: var(--grey2);
-        margin-bottom: 1.6rem;
-    }
-
-.popup__form {
-    width: 100%;
-    padding: 2rem 0;
-    text-indent: 1rem;
-    margin-bottom: 1.6rem;
-    border-radius: 3rem;
-    background-color: var(--primaryColor);
-    border: none;
-}
-
-    .popup__form:focus {
-        outline: none;
-    }
-
-.right__content a:link,
-.right__content a:visited {
-    display: inline-block;
-    padding: 1.8rem 5rem;
-    border-radius: 3rem;
-    font-weight: 700;
-    color: var(--white);
-    background-color: var(--black);
-    border: 1px solid var(--grey2);
-    transition: 0.3s;
-}
-
-.right__content a:hover {
-    background-color: var(--green);
-    border: 1px solid var(--grey2);
-    color: var(--black);
-}
-
-.hide__popup {
-    transform: scale(0.2);
-    opacity: 0;
-    visibility: hidden;
-} */
 
 /*
 ======================
@@ -2089,7 +1962,7 @@ Product Details Media Query
 Cart Area
 ======================
 */
-.cart__area {
+/*.cart__area {
     padding-bottom: 5rem;
 }
 
@@ -2194,9 +2067,9 @@ Cart Area
 }
 
 .cart__totals {
-    width: 60rem;
+    width: 60rem;*/
     /* height: 30rem; */
-    margin: 5rem auto 0 auto;
+    /*margin: 5rem auto 0 auto;
     color: var(--black5);
     padding: 4rem 5rem;
     background-color: rgba(255, 255, 255, 0.8);
@@ -2293,7 +2166,7 @@ Cart Area
         .auth .login-form p a {
             color: var(--orange);
             text-decoration: underline;
-        }
+        }*/
 
 .searchF .search-form {
     position: absolute;
@@ -2336,117 +2209,27 @@ Cart Area
             color: var(--orange);
         }
 
-.shopping-cart {
-    position: absolute;
-    top: 9%;
-    right: -110%;
-    padding: 1rem;
-    border-radius: .5rem;
-    box-shadow: var(--box-shadow);
-    width: 30rem;
-    background-color: #fff;
-    z-index: 5;
+/*form login and sigup*/
+.myForm {
+    position: relative;
+    background: url("../Images/FormBackgroundImg.jpg") center/cover no-repeat;
+    height: 90vh;
+    padding: 5rem 0;
+    z-index: 1;
+    text-align: center;
 }
 
-    .shopping-cart.active {
-        right: 6rem;
-        transition: .4s linear;
+    .myForm::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: -1;
     }
 
-    .shopping-cart .box {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        position: relative;
-        margin: 1rem 0;
-    }
-
-        .shopping-cart .box img {
-            height: 10rem;
-            width: 10rem;
-            object-fit: contain;
-        }
-
-        .shopping-cart .box .fa-trash {
-            font-size: 2rem;
-            position: absolute;
-            top: 50%;
-            right: 2rem;
-            cursor: pointer;
-            color: var(--light-color);
-            transform: translateY(-50%);
-        }
-
-            .shopping-cart .box .fa-trash:hover {
-                color: var(--orange);
-            }
-
-        .shopping-cart .box .content h3 {
-            color: var(--black);
-            font-size: 1.7rem;
-            padding-bottom: 1rem;
-        }
-
-        .shopping-cart .box .content span {
-            color: var(--light-color);
-            font-size: 1.6rem;
-        }
-
-        .shopping-cart .box .content .quantity {
-            padding-left: 1rem;
-        }
-
-    .shopping-cart .total {
-        font-size: 2.5rem;
-        padding: 1rem 0;
-        text-align: center;
-        color: var(--black);
-    }
-
-    .shopping-cart .btn {
-        display: block;
-        text-align: center;
-        margin: 1rem;
-    }
-
-/*
-======================
-Cart Area Media Query
-======================
-*/
-
-@media only screen and (max-width: 1200px) {
-    .minus-btn,
-    .plus-btn {
-        padding: 0.6rem 0.8rem;
-        margin-right: 0;
-    }
-
-    .counter-btn {
-        width: 4rem;
-        padding: 1rem 0;
-    }
-
-    .input-counter svg {
-        width: 1.5rem;
-        height: 1.5rem;
-    }
-}
-
-@media only screen and (max-width: 568px) {
-    .shopping-cart.active {
-        top: 14%;
-        right: 50%;
-        transform: translateX(50%);
-    }
-
-    .auth .login-form.active {
-        top: 14%;
-        right: 50%;
-        transform: translateX(50%);
-    }
-
-    .searchF .search-form {
-        top: 14%;
-    }
+.form-floating {
+    font-size: 11px;
 }
