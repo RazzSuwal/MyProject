@@ -3,30 +3,27 @@
 <!-- Products Details -->
 <div class="container">
     <section class="section product-details__section">
-        <div class="product-detail__container">
-            <div class="product-detail__left">
-                <div class="details__container--left">
-                    <div class="product__pictures">
-                        <!-- <div class="rect" id="rect"></div> -->
-                        <div class="picture__container">
-                            <img src="@Model.Course.ImageUrl"" />
-                            
-                    </div>
-                </div>
-                <div class=" zoom" id="zoom">
+        <form method="post">
+            <div class="product-detail__container">
+                <div class="product-detail__left">
+                    <div class="details__container--left">
+                        <div class="product__pictures">
+                            <!-- <div class="rect" id="rect"></div> -->
+                            <div class="picture__container">
+                                <img src="@Model.Course.ImageUrl" />
+                            </div>
                         </div>
+                        <div class="zoom" id="zoom"></div>
                     </div>
-
-                    
                 </div>
-            <form method="post">
+
                 <input type="hidden" asp-for="CourseId" />
                 <div class="product-detail__right">
                     <div class="product-detail__content">
                         <h3><label asp-for="Course.CourseName">CourseName: @Model.Course.CourseName</label></h3>
                         <h4><label asp-for="Course.Category.Id">Category : @Model.Course.Category.Name</label></h4>
                         <div class="price">
-                            <span class="new__price"> <label asp-for="Course.Price">Price: Rs @Model.Course.Price</label></span>
+                            <span class="new__price"><label asp-for="Course.Price">Price: Rs @Model.Course.Price</label></span>
                         </div>
                         <div class="product__review">
                             <div class="rating">
@@ -51,102 +48,82 @@
                         <p>
                             <label asp-for="Course.Description">@Model.Course.Description</label>
                         </p>
-                    <p>Created By: @Model.Course.Name</p>
+                        <p>Created By: @Model.Course.Name</p>
                     </div>
                     <div class="product-details__btn">
-                        @* <a class="add" href="#">
-                            <span>
-                                <svg>
-                                    <use xlink:href="./images/sprite.svg#icon-cart-plus"></use>
-                                </svg>
-                            </span>
-                            ADD TO CART</a> *@
-                    <button type="submit" class="add w-100 me-2">ADD TO CART</button>
+                        <button type="submit" class="add w-100 me-2">ADD TO CART</button>
                         <a class="buy" href="#">
                             <span>
                                 <svg>
                                     <use xlink:href='@Url.Content("~/Images/sprite.svg#icon-credit-card")'></use>
                                 </svg>
                             </span>
-                            BUY NOW 
+                            BUY NOW
                         </a>
                     </div>
                 </div>
             </div>
         </form>
 
-            <div class="product-detail__bottom">
-                <div class="title__container tabs">
-
-                    <div class="section__titles category__titles ">
-                        <div class="section__title detail-btn active" data-id="desc">
-                            <span class="dot"></span>
-                            <h1 class="primary__title">Description</h1>
-                        </div>
-                    </div>
-
-                    <div class="section__titles">
-                        <div class="section__title detail-btn" data-id="reviews">
-                            <span class="dot"></span>
-                            <h1 class="primary__title">Video Reviews</h1>
-                        </div>
-                    </div>
-
-                    <div class="section__titles">
-                        <div class="section__title detail-btn" data-id="shipping">
-                            <span class="dot"></span>
-                            <h1 class="primary__title">Our Policy</h1>
-                        </div>
+        <div class="product-detail__bottom">
+            <div class="title__container tabs">
+                <div class="section__titles category__titles ">
+                    <div class="section__title detail-btn active" data-id="desc">
+                        <span class="dot"></span>
+                        <h1 class="primary__title">Description</h1>
                     </div>
                 </div>
 
-                <div class="detail__content">
-                    <div class="content active" id="desc">
-                        <p>@Model.Course.Description</p>
+                <div class="section__titles">
+                    <div class="section__title detail-btn" data-id="reviews">
+                        <span class="dot"></span>
+                        <h1 class="primary__title">Video Reviews</h1>
                     </div>
-                    <div class="content" id="reviews">
-                        <h1>Video Reviews</h1>
-                        <div class="m-0">
-                                @if (@Model.Course.VideoUrl != null)
-                                {
-                                <video src="@Model.Course.VideoUrl" controls width="400" height="250"></video>
-                                }
-                                else
-                                {
-                                <img src="~/Images/notavailable.jpg" controls width="400" height="250" />
-                                }
-                            <h4>Preview this course</h4>
-                        </div>
-                    </div>
-                    <div class="content" id="shipping">
-                        <h3>Our Policy</h3>
-                        <p>You may return most new, unopened items within 30 days of delivery for a full refund. We'll also
-                            pay
-                            the return shipping costs if the return is a result of our error (you received an incorrect or
-                            defective
-                            item, etc.).</p>
-                        <p>You should expect to receive your refund within four weeks of giving your package to the return
-                            shipper, however, in many cases you will receive a refund more quickly. This time period
-                            includes the
-                            transit time for us to receive your return from the shipper (5 to 10 business days), the time it
-                            takes
-                            us to process your return once we receive it (3 to 5 business days), and the time it takes your
-                            bank to
-                            process our refund request (5 to 10 business days).
-                        </p>
-                        <p>If you need to return an item, simply login to your account, view the order using the 'Complete
-                            Orders' link under the My Account menu and click the Return Item(s) button. We'll notify you via
-                            e-mail of your refund once we've received and processed the returned item.
-                        </p>
+                </div>
+
+                <div class="section__titles">
+                    <div class="section__title detail-btn" data-id="shipping">
+                        <span class="dot"></span>
+                        <h1 class="primary__title">Our Policy</h1>
                     </div>
                 </div>
             </div>
-        
+
+            <div class="detail__content">
+                <div class="content active" id="desc">
+                    <p>@Model.Course.Description</p>
+                </div>
+                <div class="content" id="reviews">
+                    <h1>Video Reviews</h1>
+                    <div class="m-0">
+                        @if (@Model.Course.VideoUrl != null)
+                        {
+                            <video src="@Model.Course.VideoUrl" controls width="400" height="250"></video>
+                        }
+                        else
+                        {
+                            <img src='@Url.Content("~/Images/notavailable.jpg")' controls width="400" height="250" />
+                        }
+                        <h4>Preview this course</h4>
+                    </div>
+                </div>
+                <div class="content" id="shipping">
+                    <h3>Our Policy</h3>
+                    <p>
+                        You may request a return for most new and unopened courses within 30 days of purchase for a full refund. If the return is a result of our error (e.g., you received an incorrect or defective course), we will also cover the return shipping costs.
+                    </p>
+                    <p>
+                        Upon initiating a return, please allow up to four weeks to receive your refund. The processing time includes the transit time for us to receive your return from the shipper (5 to 10 business days), the time it takes us to process your return once we receive it (3 to 5 business days), and the time it takes your bank to process our refund request (5 to 10 business days).
+                    </p>
+                    <p>
+                        To initiate a return, log in to your account, navigate to the order using the 'Complete Orders' link under the My Account menu, and click the Return Item(s) button. We will notify you via email once we've received and processed the returned course.
+                    </p>
+
+                </div>
+            </div>
+        </div>
     </section>
-                            @Html.ActionLink("View Similar Courses", "SimilarCourses", new { courseId = ViewBag.TargetCourse.Id })
-</div>    
-
-
+</div>
 
 
 @* <h1 class="my-3">Course Details</h1>

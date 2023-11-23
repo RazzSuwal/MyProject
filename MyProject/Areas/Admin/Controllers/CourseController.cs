@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MyProject.DataAccessLayer.Data;
 using MyProject.DataAccessLayer.Infrastructure.IRepository;
@@ -175,21 +176,38 @@ namespace MyProject.Areas.Admin.Controllers
         [HttpDelete]
         public IActionResult Delete(int? id)
         {
-            var course = _unitOfWork.Course.GetT(x => x.Id == id);
-            if (course == null)
-            {
-                return Json(new { success = false, message = "Error in Fetching Data" });
-            }
-            else
-            {
-                var oldImagePath = Path.Combine(_hostingEnvironment.WebRootPath, course.ImageUrl.TrimStart('\\'));
-                if (System.IO.File.Exists(oldImagePath))
+            try 
+            { 
+                var course = _unitOfWork.Course.GetT(x => x.Id == id);
+                if (course == null)
                 {
-                    System.IO.File.Delete(oldImagePath);
+                    return Json(new { success = false, message = "Error in Fetching Data" });
                 }
-                _unitOfWork.Course.Delete(course);
-                _unitOfWork.Save();
-                return Json(new { success = true, message = "Course Deleted" });
+                else
+                {
+                    var oldImagePath = Path.Combine(_hostingEnvironment.WebRootPath, course.ImageUrl.TrimStart('\\'));
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                    _unitOfWork.Course.Delete(course);
+                    _unitOfWork.Save();
+                    return Json(new { success = true, message = "Course Deleted" });
+                }
+            }
+            catch (DbUpdateException ex)
+            {
+                // ... your existing code ...
+
+                // Constraint violation (related records exist)
+                TempData["error"] = "Cannot delete the course because it has related data.";
+                return RedirectToAction("Index"); // Or redirect to an error view
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions that might occur during the deletion process
+                TempData["error"] = "An unexpected error occurred: " + ex.Message;
+                return RedirectToAction("Index"); // Or redirect to an error view
             }
         }
         #endregion

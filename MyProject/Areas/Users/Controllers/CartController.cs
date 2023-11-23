@@ -151,7 +151,7 @@ namespace MyProject.Areas.Customer.Controllers
             List<Cart> cart = _unitOfWork.Cart.GetAll(x => x.ApplicationUserId == orderHeader.ApplicationUserId).ToList();
             _unitOfWork.Cart.DeleteRange(cart);
             _unitOfWork.Save();
-            return View(id);
+            return View();
         }
 
 

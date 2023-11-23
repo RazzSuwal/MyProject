@@ -2,19 +2,40 @@
 {
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script>
-        toastr.success('@TempData["success"]')
-    </script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "timeOut": "5000",
+            "extendedTimeOut": "2000"
+        };
+
+        toastr.success('@TempData["success"]');
+        // Set font size for the success notification
+        $('.toast-success').css('font-size', '18px'); // Adjust the font size as needed
+    </script>
 }
+
 @if (@TempData["error"] != null)
 {
-    {
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-        <script>
-            toastr.error('@TempData["error"]')
-        </script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 
-    }
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "timeOut": "5000",
+            "extendedTimeOut": "2000"
+        };
+
+        toastr.error('@TempData["error"]');
+        // Set font size for the error notification
+        $('.toast-error').css('font-size', '18px'); // Adjust the font size as needed
+    </script>
 }

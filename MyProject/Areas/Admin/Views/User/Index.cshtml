@@ -1,0 +1,50 @@
+﻿@model MyProject.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="col-6">
+        <h1 class="mt-3">Users Details</h1>
+    </div>
+
+    <table id="myTable" class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Country
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        @* @foreach(var items in Model.products){
+        <tbody>
+        <tr>
+        <td>
+        @items.Name
+        </td>
+        <td>
+        @items.DisplayOrder
+        </td>
+        <td role="group">
+        <a asp-action="CreateUpdate" asp-controller="Product" asp-route-id="@items.Id">Edit</a>
+        <a asp-action="Delete" asp-controller="Product" asp-route-id="@items.Id">Delete</a>
+        </td>
+        </tr>
+        </tbody>
+        }*@
+
+    </table>
+</div>
+
+@section scripts {
+    <script src="~/js/AllUser.js"> </script>
+}

@@ -57,11 +57,17 @@
                             <li class="nav__item">
                                 <a aria-current ="page" asp-area="Users" asp-controller="Home" asp-action="Index" class="nav__link ">Home</a>
                             </li>
+                            @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                            {
+                                <li class="nav__item">
+                                    <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="nav__link">Category</a>
+                                </li>
+                                <li class="nav__item">
+                                    <a asp-area="Admin" asp-controller="User" asp-action="Index" class="nav__link">Users</a>
+                                </li>
+                            }
                             <li class="nav__item">
-                                <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="nav__link">Category</a>
-                            </li>
-                            <li class="nav__item">
-                                <a class="nav__link" asp-area="Admin" asp-controller="Course" asp-action="Index">Course</a>
+                                <a class="nav__link" asp-area="Users" asp-controller="Home" asp-action="Course">Courses</a>
                             </li>
                             <li class="nav__item">
                                 <a class="nav__link" asp-area="Admin" asp-controller="Order" asp-action="Index">Order</a>

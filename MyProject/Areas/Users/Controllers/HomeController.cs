@@ -33,6 +33,16 @@ namespace MyProject.Controllers
             return View(courses);
         }
         [HttpGet]
+        public IActionResult Course()
+        {
+            IEnumerable<Course> courses = _unitOfWork.Course.GetAlls(includeProperties: new Expression<Func<Course, object>>[]
+           {
+                t => t.Category
+           });
+            ViewBag.ShowFooter = true;
+            return View(courses);
+        }
+        [HttpGet]
         public IActionResult Details(int? CourseId)
         {
             Cart cart = new Cart()

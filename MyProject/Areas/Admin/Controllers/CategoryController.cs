@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MyProject.DataAccessLayer.Data;
 using MyProject.DataAccessLayer.Infrastructure.IRepository;
 using MyProject.DataAccessLayer.Infrastructure.Repository;
@@ -54,17 +55,30 @@ namespace Project.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (vm.Category.Id == 0)
+                var categories = _unitOfWork.Category.GetAll().ToList();
+
+                // Sort categories by name using Bubble Sort algorithm
+                SortingHelper.BubbleSortByName(categories);
+
+                // Check if a category with the same name already exists
+                if (!SortingHelper.BinarySearchByName(categories, vm.Category.Name))
                 {
-                    _unitOfWork.Category.Add(vm.Category);
+                    if (vm.Category.Id == 0)
+                    {
+                        _unitOfWork.Category.Add(vm.Category);
+                    }
+                    else
+                    {
+                        _unitOfWork.Category.Update(vm.Category);
+                    }
+                    _unitOfWork.Save();
+                    TempData["success"] = "Category Updated Successfully!";
+                    return RedirectToAction("Index");
                 }
                 else
                 {
-                    _unitOfWork.Category.Update(vm.Category);
+                    TempData["error"] = "Category with the same name already exists!";
                 }
-                _unitOfWork.Save();
-                TempData["success"] = "Category Update Sucessfully!";
-                return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
         }
@@ -89,15 +103,33 @@ namespace Project.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteData(int? id)
         {
-            var category = _unitOfWork.Category.GetT(x => x.Id == id);
-            if (category == null)
+            try
             {
-                return NotFound();
+                var category = _unitOfWork.Category.GetT(x => x.Id == id);
+                if (category == null)
+                {
+                    return NotFound();
+                }
+                _unitOfWork.Category.Delete(category);
+                _unitOfWork.Save();
+                TempData["success"] = "Product Deleted Done!";
+                return RedirectToAction("Index");
             }
-            _unitOfWork.Category.Delete(category);
-            _unitOfWork.Save();
-            TempData["error"] = "Product Deleted Done!";
-            return RedirectToAction("Index");
+            catch (DbUpdateException ex)
+            {
+                // ... your existing code ...
+
+                // Constraint violation (related records exist)
+                TempData["error"] = "Cannot delete the category because it has related data.";
+                return RedirectToAction("Index"); // Or redirect to an error view
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions that might occur during the deletion process
+                TempData["error"] = "An unexpected error occurred: " + ex.Message;
+                return RedirectToAction("Index"); // Or redirect to an error view
+            }
         }
+
     }
 }
